@@ -1,0 +1,3 @@
+$ git status
+.\node_modules\*
+.\.idea\*
