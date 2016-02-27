@@ -1,0 +1,11 @@
+var twitterAPI = require('node-twitter-api');
+
+
+module.exports = function(){
+    var item1 = '';
+    var item2 = '';
+
+    var punchline = '';
+
+    return(`What is the difference between ${item1} and ${item2}? ${punchline}`);
+}
