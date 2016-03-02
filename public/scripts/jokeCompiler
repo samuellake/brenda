@@ -1,5 +1,32 @@
 var twitterAPI = require('node-twitter-api');
+var twitter = new twitterAPI({
+	consumerKey: 'Gz6uyl0vhzjcO5Y6TTnMKkYlo',
+	consumerSecret: 'S0COvlufA9ZOzr0iB2eIXPWbx6kwnfLOClYEWhthk2T5ccpBml',
+	callback: ''
+});
 
+const reqToken;
+const reqTokenSecret;
+const accToken;
+const accTokenSecret;
+
+twitter.getRequestToken(function(error, requestToken, requestTokenSecret, results){
+	if (error) {
+		console.log("Error getting OAuth request token : " + error);
+	} else {
+		reqToken = requestToken;
+		reqTokenSecret = requestTokenSecret;
+	}
+});
+
+twitter.getAccessToken(reqToken, reqTokenSecret, oauth_verifier, function(error, accessToken, accessTokenSecret, results) {
+	if (error) {
+		console.log(error);
+	} else {
+		accToken = requestToken;
+        accTokenSecret = requestTokenSecret;
+	}
+});
 
 module.exports = function(){
     var item1 = '';
