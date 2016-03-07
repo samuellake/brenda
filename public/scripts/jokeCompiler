@@ -1,31 +1,20 @@
-const reqToken;
-const reqTokenSecret;
-const accToken;
-const accTokenSecret;
+var Twitter = require('twitter');
+var Sentencer = require('./sentencerHelper.js');
 
-twitter.getRequestToken(function(error, requestToken, requestTokenSecret, results){
-	if (error) {
-		console.log("Error getting OAuth request token : " + error);
-	} else {
-		reqToken = requestToken;
-		reqTokenSecret = requestTokenSecret;
-	}
+var client = new Twitter({
+
 });
 
-twitter.getAccessToken(reqToken, reqTokenSecret, oauth_verifier, function(error, accessToken, accessTokenSecret, results) {
-	if (error) {
-		console.log(error);
-	} else {
-		accToken = requestToken;
-        accTokenSecret = requestTokenSecret;
-	}
+client.get('search/tweets', {q: 'node.js', count: '1'}, function(error, tweets, response){
+    console.log(tweets.statuses[0].text);
+   for(tweet in tweets.statuses){
+     console.log(tweet);
+   }
 });
 
 module.exports = function(){
-    var item1 = '';
-    var item2 = '';
+    var item1 = Sentencer.make("{{a_noun}}");
+    var item2 = Sentencer.make("{{presentVerb}}");
 
-    var punchline = '';
-
-    return(`What is the difference between ${item1} and ${item2}? ${punchline}`);
+    return(`Id like to sit on ${item1} and start ${item2}`);
 }

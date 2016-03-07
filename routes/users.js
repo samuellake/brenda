@@ -4,8 +4,10 @@ var say = require('say');
 var jokeCompiler = require('../public/scripts/jokeCompiler');
 
 router.get('/', function(req, res, next) {
-    say.speak(jokeCompiler());
-  res.send('respond with a resource');
+
+  var joke = jokeCompiler();
+  say.speak(joke);
+  res.send(joke);
 });
 
 module.exports = router;
