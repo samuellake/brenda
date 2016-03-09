@@ -1,15 +1,21 @@
 var Twitter = require('twitter');
 var Sentencer = require('./sentencerHelper.js');
+var Gramophone = require('gramophone');
 
 var client = new Twitter({
 
 });
 
-client.get('search/tweets', {q: 'node.js', count: '1'}, function(error, tweets, response){
-    console.log(tweets.statuses[0].text);
-   for(tweet in tweets.statuses){
-     console.log(tweet);
+client.get('search/tweets', {q: 'clinton', count: '100'}, function(error, tweets, response){
+    console.log(tweets.search_metadata);
+
+    var text;
+   for(var i = 0; i < tweets.statuses.length; i++){
+     console.log(tweets.statuses[i].text);
+     text += tweets.statuses[i].text;
    }
+
+   console.log(Gramophone.extract(text, {score: true}));
 });
 
 module.exports = function(){
