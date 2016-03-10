@@ -1,3 +1,17 @@
-$ git status
-.\node_modules\*
-.\.idea\*
+node_modules/*
+.idea/*
+*.log
+/src/config/assets-manifest.json
+# Any build/packaging folders
+target
+build
+bin
+
+#idea
+*.iws
+*.iml
+*ipr
+*.DS_Store
+assets/**/**
+coverage
+.nyc_output

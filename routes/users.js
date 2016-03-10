@@ -5,9 +5,13 @@ var jokeCompiler = require('../public/scripts/jokeCompiler');
 
 router.get('/', function(req, res, next) {
 
-  var joke = jokeCompiler();
-  say.speak(joke);
-  res.send(joke);
+  jokeCompiler(req.param('keyword')).then(function(result){
+    console.log("joke", result);
+    say.speak(result);
+    res.send(result);
+  });
+
+
 });
 
 module.exports = router;
