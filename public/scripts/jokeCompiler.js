@@ -1,26 +1,21 @@
-var Twitter = require('twitter');
+var Twitter = require('./twitterHelper.js');
 var Sentencer = require('./sentencerHelper.js');
 var Gramophone = require('gramophone');
 
-var client = new Twitter({
-
-});
 module.exports = function(keyword){
 
     var joke = new Promise(function(resolve, reject) {
 
         console.log(keyword);
 
-        client.get('search/tweets', {q: keyword, count: '100'}, function(error, tweets, response){
-            console.log(tweets.search_metadata);
+        Twitter.get('search/tweets', {q: keyword, count: '100'}, function(error, tweets, response){
 
             var text;
             for(var i = 0; i < tweets.statuses.length; i++){
-                console.log(tweets.statuses[i].text);
                 text += tweets.statuses[i].text;
             }
 
-            var scores = Gramophone.extract(text, {score: true, stopWords:['clinton', 'https']});
+            var scores = Gramophone.extract(text, {score: true, stopWords:[keyword, 'https']});
             console.log(scores);
 
             //var item1 = Sentencer.make("{{a_noun}}");
