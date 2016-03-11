@@ -1,5 +1,6 @@
 var Twitter = require('./twitterHelper.js');
 var Sentencer = require('./sentencerHelper.js');
+var Templates = require('./jokeTemplates.js');
 var Gramophone = require('gramophone');
 
 module.exports = function(keyword){

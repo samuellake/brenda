@@ -8,6 +8,9 @@ Sentencer.configure({
     presentVerb: function() {
       var presentVerbs = ['whistling', 'whooping', 'singing', 'churning', 'yelling'];
       return presentVerbs[Math.floor(Math.random()*presentVerbs.length)];
+    },
+    pause: function(){
+      return '.............';
     }
   }
 });

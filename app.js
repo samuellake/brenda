@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var Twitter = require('./public/scripts/twitterHelper.js');
+var JokeCompiler = require('./public/scripts/jokeCompiler.js');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -53,6 +55,16 @@ app.use(function(err, req, res, next) {
   res.render('error', {
     message: err.message,
     error: {}
+  });
+});
+
+Twitter.stream('statuses/filter', {track: '#BRENDA'}, function(stream) {
+  stream.on('data', function(tweet) {
+    console.log(tweet.text);
+  });
+
+  stream.on('error', function(error) {
+    throw error;
   });
 });
 
